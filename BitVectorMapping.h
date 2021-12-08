@@ -37,7 +37,7 @@ public:
 
   const AddressToIndexMap &getAddressToIndexMap() { return addrIndexMap; }
 
-  void assignIndexToValue(const llvm::Value *V);
+  bool assignIndexToValue(const llvm::Value *V);
 
   void printMapping() const;
 

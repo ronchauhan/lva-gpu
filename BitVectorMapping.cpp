@@ -34,14 +34,16 @@ BitVectorMapping::getBitVectorIndexForValue(const llvm::Value *V) const {
   return it->second;
 }
 
-void BitVectorMapping::assignIndexToValue(const llvm::Value *V) {
+bool BitVectorMapping::assignIndexToValue(const llvm::Value *V) {
   uint64_t address = (uint64_t) & (*V);
   auto it = addrIndexMap.find(address);
   if (it == addrIndexMap.end()) {
     addrIndexMap[address] = nextIndex;
     indexAddrMap[nextIndex] = address;
     ++nextIndex;
+    return true;
   }
+  return false;
 }
 
 // Create and return a bitvector where the bit corresponding to each value in
